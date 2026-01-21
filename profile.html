@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile - Media Catalog</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#4361ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Media Catalog">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <!-- Styles & Fonts -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon-192.png">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-user"></i>
+                <span>Media<span class="highlight">Catalog</span></span>
+            </div>
+            
+            <div class="nav-actions">
+                <span id="online-status" class="online-status">
+                    <i class="fas fa-wifi"></i> Online
+                </span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="movie.html"><i class="fas fa-film"></i> Movies</a></li>
+                <li><a href="music.html"><i class="fas fa-music"></i> Music</a></li>
+                <li><a href="novel.html"><i class="fas fa-book"></i> Novels</a></li>
+                <li><a href="add-media.html"><i class="fas fa-plus"></i> Add Media</a></li>
+                <li><a href="profile.html" class="active"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Profile Hero -->
+    <section class="profile-hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">My Profile</h1>
+                <p class="hero-subtitle">
+                    Manage your media collection and app settings.
+                </p>
+                
+                <!-- Quick Stats -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon movies">
+                            <i class="fas fa-film"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h4>Movies</h4>
+                            <div class="stat-value" id="profile-movies">0</div>
+                            <div class="stat-label">Watched</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon music">
+                            <i class="fas fa-music"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h4>Music</h4>
+                            <div class="stat-value" id="profile-music">0</div>
+                            <div class="stat-label">Albums</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card">
+                        <div class="stat-icon novels">
+                            <i class="fas fa-book"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h4>Novels</h4>
+                            <div class="stat-value" id="profile-novels">0</div>
+                            <div class="stat-label">Read</div>
+                        </div>
+                    </div>
+                    
+                    <div class="stat-card total">
+                        <div class="stat-icon total">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h4>Total</h4>
+                            <div class="stat-value" id="profile-total">0</div>
+                            <div class="stat-label">Collection</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Profile Content -->
+    <main>
+        <div class="container">
+            <div class="profile-container">
+                <!-- Profile Sidebar -->
+                <div class="profile-sidebar">
+                    <div class="profile-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="profile-name">Media Enthusiast</div>
+                    <div class="profile-email">you@example.com</div>
+                    
+                    <div class="profile-stats">
+                        <div class="profile-stat">
+                            <div class="profile-stat-value" id="sidebar-movies">0</div>
+                            <div class="profile-stat-label">Movies</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value" id="sidebar-music">0</div>
+                            <div class="profile-stat-label">Music</div>
+                        </div>
+                        <div class="profile-stat">
+                            <div class="profile-stat-value" id="sidebar-novels">0</div>
+                            <div class="profile-stat-label">Novels</div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 30px; text-align: left; color: var(--text-light); font-size: 0.9rem;">
+                        <p><i class="fas fa-calendar" style="margin-right: 8px;"></i> Member since: Today</p>
+                        <p><i class="fas fa-database" style="margin-right: 8px;"></i> Data: Local Storage</p>
+                        <p><i class="fas fa-check-circle" style="margin-right: 8px; color: #10b981;"></i> Status: Active</p>
+                    </div>
+                </div>
+                
+                <!-- Profile Main Content -->
+                <div class="profile-main">
+                    <h2><i class="fas fa-cog"></i> Data Management</h2>
+                    
+                    <div class="card" style="margin-top: 20px;">
+                        <div class="card-body">
+                            <h3 style="color: var(--primary-color); margin-bottom: 15px;">
+                                <i class="fas fa-database"></i> Backup & Restore
+                            </h3>
+                            <p style="line-height: 1.6; color: var(--text-color); margin-bottom: 20px;">
+                                Your data is stored locally in your browser. You can export it as a backup 
+                                or import previously saved data.
+                            </p>
+                            
+                            <div class="data-buttons">
+                                <button onclick="exportData()" class="btn btn-primary">
+                                    <i class="fas fa-download"></i> Export All Data
+                                </button>
+                                <button onclick="importData()" class="btn btn-outline">
+                                    <i class="fas fa-upload"></i> Import Data
+                                </button>
+                                <button onclick="clearAllData()" class="btn btn-outline" style="color: #ef4444; border-color: #ef4444;">
+                                    <i class="fas fa-trash"></i> Clear All Data
+                                </button>
+                            </div>
+                            
+                            <div style="background: var(--light-color); padding: 20px; border-radius: 8px; margin-top: 25px;">
+                                <h4 style="color: var(--primary-color); margin-bottom: 10px;">
+                                    <i class="fas fa-info-circle"></i> About Local Storage
+                                </h4>
+                                <p style="color: var(--text-color); margin: 0; line-height: 1.6; font-size: 0.9rem;">
+                                    Your media collection is stored in your browser's local storage. 
+                                    This means it works 100% offline and doesn't require internet. 
+                                    Data is saved even when you close the browser.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 style="margin-top: 40px;"><i class="fas fa-chart-bar"></i> Collection Statistics</h2>
+                    
+                    <div class="card" style="margin-top: 20px;">
+                        <div class="card-body">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                                <div>
+                                    <h4 style="color: var(--primary-color); margin-bottom: 10px;">
+                                        <i class="fas fa-film"></i> Movies
+                                    </h4>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 2.5rem; color: #f43f5e; font-weight: 700;" id="stats-movies">0</div>
+                                        <div style="color: var(--text-light);">Total Movies</div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 style="color: var(--primary-color); margin-bottom: 10px;">
+                                        <i class="fas fa-music"></i> Music
+                                    </h4>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 2.5rem; color: #8b5cf6; font-weight: 700;" id="stats-music">0</div>
+                                        <div style="color: var(--text-light);">Total Albums</div>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <h4 style="color: var(--primary-color); margin-bottom: 10px;">
+                                        <i class="fas fa-book"></i> Novels
+                                    </h4>
+                                    <div style="text-align: center;">
+                                        <div style="font-size: 2.5rem; color: #0ea5e9; font-weight: 700;" id="stats-novels">0</div>
+                                        <div style="color: var(--text-light);">Total Novels</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h2 style="margin-top: 40px;"><i class="fas fa-mobile-alt"></i> App Information</h2>
+                    
+                    <div class="card" style="margin-top: 20px;">
+                        <div class="card-body">
+                            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                                <div>
+                                    <h4 style="color: var(--primary-color); margin-bottom: 10px;">
+                                        <i class="fas fa-info-circle"></i> About This App
+                                    </h4>
+                                    <p style="color: var(--text-color); font-size: 0.9rem; line-height: 1.6;">
+                                        <strong>Media Catalog</strong> is a Progressive Web App (PWA) that works offline. 
+                                        You can install it on your phone, tablet, or computer for easy access.
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 style="color: var(--primary-color); margin-bottom: 10px;">
+                                        <i class="fas fa-download"></i> Install App
+                                    </h4>
+                                    <p style="color: var(--text-color); font-size: 0.9rem; line-height: 1.6;">
+                                        To install as an app:
+                                        <br>1. Open in Chrome/Edge
+                                        <br>2. Click install icon (📥)
+                                        <br>3. Or use "Add to Home Screen"
+                                    </p>
+                                </div>
+                                
+                                <div>
+                                    <h4 style="color: var(--primary-color); margin-bottom: 10px;">
+                                        <i class="fas fa-shield-alt"></i> Privacy
+                                    </h4>
+                                    <p style="color: var(--text-color); font-size: 0.9rem; line-height: 1.6;">
+                                        All data stays on your device. No data is sent to any server. 
+                                        Your collection is private and secure.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>My Profile</h3>
+                <p>Manage your personal media collection.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="movie.html"><i class="fas fa-film"></i> Movies</a></li>
+                    <li><a href="music.html"><i class="fas fa-music"></i> Music</a></li>
+                    <li><a href="novel.html"><i class="fas fa-book"></i> Novels</a></li>
+                    <li><a href="add-media.html"><i class="fas fa-plus"></i> Add Media</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>My Stats</h4>
+                <ul>
+                    <li><strong>Movies:</strong> <span id="footer-movies">0</span></li>
+                    <li><strong>Music:</strong> <span id="footer-music">0</span></li>
+                    <li><strong>Novels:</strong> <span id="footer-novels">0</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Media Catalog Profile | Offline PWA | Updated: <span id="footer-update-time">--</span></p>
+        </div>
+    </footer>
+    
+    <!-- Load scripts -->
+    <script src="database.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

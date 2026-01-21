@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Media Catalog</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#4361ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Media Catalog">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <!-- Styles & Fonts -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon-192.png">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <span>Media<span class="highlight">Catalog</span></span>
+            </div>
+            
+            <div class="nav-actions">
+                <span id="online-status" class="online-status">
+                    <i class="fas fa-wifi"></i> Online
+                </span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="movie.html"><i class="fas fa-film"></i> Movies</a></li>
+                <li><a href="music.html"><i class="fas fa-music"></i> Music</a></li>
+                <li><a href="novel.html"><i class="fas fa-book"></i> Novels</a></li>
+                <li><a href="add-media.html"><i class="fas fa-plus"></i> Add Media</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">My Personal Media Catalog</h1>
+                <p class="hero-subtitle">
+                    Track, rate, and organize your movies, music, and novels. 
+                    Works 100% offline - install as an app!
+                </p>
+                
+                <!-- Live Stats -->
+                <div class="live-stats">
+                    <div class="stats-header">
+                        <h3><i class="fas fa-chart-line"></i> Collection Stats</h3>
+                        <div class="update-info">
+                            <span class="last-updated" id="last-updated">Just now</span>
+                            <button onclick="refreshData()" class="refresh-btn">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <!-- Movies Card -->
+                        <div class="stat-card" id="movies-card">
+                            <div class="stat-icon movies">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h4>Movies</h4>
+                                <div class="stat-value" id="movies-count">0</div>
+                                <div class="stat-label">Total Rated</div>
+                            </div>
+                            <div class="stat-trend">
+                                <i class="fas fa-arrow-up trend-up"></i>
+                                <span>Ready</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Music Card -->
+                        <div class="stat-card" id="music-card">
+                            <div class="stat-icon music">
+                                <i class="fas fa-music"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h4>Music</h4>
+                                <div class="stat-value" id="music-count">0</div>
+                                <div class="stat-label">Albums/Playlists</div>
+                            </div>
+                            <div class="stat-trend">
+                                <i class="fas fa-arrow-up trend-up"></i>
+                                <span>Ready</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Novels Card -->
+                        <div class="stat-card" id="novels-card">
+                            <div class="stat-icon novels">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h4>Novels</h4>
+                                <div class="stat-value" id="novels-count">0</div>
+                                <div class="stat-label">Books Read</div>
+                            </div>
+                            <div class="stat-trend">
+                                <i class="fas fa-arrow-up trend-up"></i>
+                                <span>Ready</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Total Card -->
+                        <div class="stat-card total" id="total-card">
+                            <div class="stat-icon total">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h4>Total</h4>
+                                <div class="stat-value" id="total-count">0</div>
+                                <div class="stat-label">All Items</div>
+                            </div>
+                            <div class="stat-trend">
+                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                                <span>Offline</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Actions -->
+                    <div style="display: flex; gap: 15px; margin-top: 25px;">
+                        <a href="add-media.html" class="open-sheet-btn">
+                            <i class="fas fa-plus-circle"></i>
+                            Add New Media
+                        </a>
+                        <button onclick="exportData()" class="refresh-btn">
+                            <i class="fas fa-download"></i> Export Data
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Quick Navigation -->
+                <div class="hero-actions">
+                    <a href="movie.html" class="btn btn-primary">
+                        <i class="fas fa-film"></i> Browse Movies
+                    </a>
+                    <a href="music.html" class="btn btn-secondary">
+                        <i class="fas fa-music"></i> Browse Music
+                    </a>
+                    <a href="novel.html" class="btn btn-secondary">
+                        <i class="fas fa-book"></i> Browse Novels
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Recent Activity -->
+    <main>
+        <div class="container">
+            <div class="media-header">
+                <h1>Quick Actions</h1>
+                <p class="media-subtitle">
+                    Jump straight to what you want to do
+                </p>
+            </div>
+            
+            <div class="quick-actions">
+                <a href="add-media.html" class="quick-action-btn add">
+                    <i class="fas fa-plus-circle"></i>
+                    <span>Add Media</span>
+                </a>
+                <a href="movie.html" class="quick-action-btn movies">
+                    <i class="fas fa-film"></i>
+                    <span>Movies</span>
+                </a>
+                <a href="music.html" class="quick-action-btn music">
+                    <i class="fas fa-music"></i>
+                    <span>Music</span>
+                </a>
+                <a href="novel.html" class="quick-action-btn novels">
+                    <i class="fas fa-book"></i>
+                    <span>Novels</span>
+                </a>
+            </div>
+            
+            <!-- Search -->
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search-input" class="search-input" placeholder="Search your collection...">
+            </div>
+            
+            <div id="search-results" class="media-grid">
+                <!-- Search results will appear here -->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Media Catalog</h3>
+                <p>Your personal offline media tracker.</p>
+                <p><small>Works without internet</small></p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="movie.html"><i class="fas fa-film"></i> Movies</a></li>
+                    <li><a href="music.html"><i class="fas fa-music"></i> Music</a></li>
+                    <li><a href="novel.html"><i class="fas fa-book"></i> Novels</a></li>
+                    <li><a href="add-media.html"><i class="fas fa-plus"></i> Add Media</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Storage</h4>
+                <p id="sheet-status">Status: <span class="status-text">Local</span></p>
+                <button onclick="refreshData()" class="btn-small">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+                <button onclick="importData()" class="btn-small" style="margin-top: 10px;">
+                    <i class="fas fa-upload"></i> Import
+                </button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Data stored in browser | Updated: <span id="footer-update-time">--</span></p>
+            <p style="margin-top: 5px; font-size: 0.8rem; color: #94a3b8;">
+                <i class="fas fa-mobile-alt"></i> Install as App for best experience
+            </p>
+        </div>
+    </footer>
+
+    <!-- Load scripts -->
+    <script src="database.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

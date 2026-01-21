@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movies - Media Catalog</title>
+    
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#4361ee">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Media Catalog">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    
+    <!-- Styles & Fonts -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="icon-192.png">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <nav class="nav-container">
+            <div class="logo">
+                <i class="fas fa-film"></i>
+                <span>Media<span class="highlight">Catalog</span></span>
+            </div>
+            
+            <div class="nav-actions">
+                <span id="online-status" class="online-status">
+                    <i class="fas fa-wifi"></i> Online
+                </span>
+            </div>
+            
+            <ul class="nav-menu">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="movie.html" class="active"><i class="fas fa-film"></i> Movies</a></li>
+                <li><a href="music.html"><i class="fas fa-music"></i> Music</a></li>
+                <li><a href="novel.html"><i class="fas fa-book"></i> Novels</a></li>
+                <li><a href="add-media.html"><i class="fas fa-plus"></i> Add Media</a></li>
+                <li><a href="profile.html"><i class="fas fa-user"></i> Profile</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Movies Hero Section -->
+    <section class="hero" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1 class="hero-title">My Movie Collection</h1>
+                <p class="hero-subtitle">
+                    All the films I've watched, rated, and reviewed. 
+                    Available offline.
+                </p>
+                
+                <!-- Movie Stats -->
+                <div class="live-stats">
+                    <div class="stats-header">
+                        <h3><i class="fas fa-film"></i> Movie Statistics</h3>
+                        <div class="update-info">
+                            <span class="last-updated" id="last-updated">Just now</span>
+                            <button onclick="refreshData()" class="refresh-btn">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-icon movies">
+                                <i class="fas fa-film"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h4>Total Movies</h4>
+                                <div class="stat-value" id="movies-count">0</div>
+                                <div class="stat-label">In Collection</div>
+                            </div>
+                            <div class="stat-trend">
+                                <i class="fas fa-chart-line"></i>
+                                <span>Live</span>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card total">
+                            <div class="stat-icon total">
+                                <i class="fas fa-database"></i>
+                            </div>
+                            <div class="stat-details">
+                                <h4>Storage</h4>
+                                <div class="stat-value">Offline</div>
+                                <div class="stat-label">Ready</div>
+                            </div>
+                            <div class="stat-trend">
+                                <i class="fas fa-check-circle" style="color: #10b981;"></i>
+                                <span>Active</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Actions -->
+                <div class="hero-actions">
+                    <a href="add-media.html" class="btn btn-primary">
+                        <i class="fas fa-plus"></i>
+                        Add New Movie
+                    </a>
+                    <a href="index.html" class="btn btn-secondary">
+                        <i class="fas fa-home"></i> Back Home
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Movies Grid -->
+    <main>
+        <div class="container">
+            <div class="media-header">
+                <h1>Browse Movie Collection</h1>
+                <p class="media-subtitle">
+                    All your movies stored locally. Works without internet.
+                </p>
+            </div>
+            
+            <!-- Search -->
+            <div class="search-container">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" id="search-input" class="search-input" placeholder="Search movies...">
+            </div>
+            
+            <div class="media-grid" id="movies-grid">
+                <!-- Movies loaded by JavaScript -->
+                <div class="loading-items">
+                    <div class="loading-spinner"></div>
+                    <p>Loading your movie collection...</p>
+                </div>
+            </div>
+            
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="add-media.html" class="btn btn-primary" style="padding: 15px 40px; font-size: 1.1rem;">
+                    <i class="fas fa-plus-circle"></i> Add More Movies
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Movie Catalog</h3>
+                <p>Track your movie collection offline.</p>
+                <div class="connection-status" style="margin-top: 15px;">
+                    <span class="status-dot"></span>
+                    <span id="connection-status">Local Storage</span>
+                </div>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="movie.html" class="active"><i class="fas fa-film"></i> Movies</a></li>
+                    <li><a href="music.html"><i class="fas fa-music"></i> Music</a></li>
+                    <li><a href="novel.html"><i class="fas fa-book"></i> Novels</a></li>
+                    <li><a href="add-media.html"><i class="fas fa-plus"></i> Add Media</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Storage</h4>
+                <p id="sheet-status">Status: <span class="status-text">Local</span></p>
+                <button onclick="refreshData()" class="btn-small">
+                    <i class="fas fa-sync"></i> Refresh
+                </button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Data stored in browser | Updated: <span id="footer-update-time">--</span></p>
+        </div>
+    </footer>
+
+    <!-- Load scripts -->
+    <script src="database.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

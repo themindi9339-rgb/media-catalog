@@ -1,0 +1,19 @@
+# _config.yml
+title: Media Catalog
+description: Media Catalog PWA
+baseurl: "/media-catalog"
+url: "https://yourusername.github.io"
+theme: jekyll-theme-minimal
+
+include:
+  - .nojekyll
+  - icon-192.png
+  - icon-512.png
+  - manifest.json
+  - service-worker.js
+  - styles.css
+  - app.js
+  - database.js
+
+exclude:
+  - README.md
